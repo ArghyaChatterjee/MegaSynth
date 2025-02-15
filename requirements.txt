@@ -1,0 +1,8 @@
+datasets 
+opencv-python 
+Pillow 
+rich 
+bpy==3.6.0 
+numpy 
+scipy 
+matplotlib
