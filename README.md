@@ -4,7 +4,9 @@
 
 </div>
 
-**Abstract**: We propose scaling up 3D scene reconstruction by training with <b>synthesized data</b>. At the core of our work is <b>MegaSynth</b>, a 3D dataset comprising <b>700K scenes</b> (which takes only <b>3 days</b> to generate) - 70 times larger than the prior real dataset DL3DV - dramatically scaling the training data. To enable scalable data generation, our key idea is <b>eliminating semantic information</b>, removing the need to model complex semantic priors such as object affordances and scene composition. Instead, we model scenes with basic spatial structures and geometry primitives, offering scalability. Besides, we control data complexity to facilitate training while loosely aligning it with real-world data distribution to benefit real-world generalization. We explore training LRMs with both MegaSynth and available real data, enabling <b>wide-coverage scene reconstruction within 0.3 second</b>.
+<p align="center">
+  <img src="assets/mega_synth_scene.png" alt="Hand Mesh Model" width="500">
+</p>
 
 ## Requirements
 We have tried this on Ubuntu 22.04 with Nvidia RTX 3060 GPU and cuda 12.1.
@@ -34,9 +36,9 @@ export PATH=path/to/blender/:$PATH
 
 ## Generate Scenes
 ```
-. ./render.sh 
-# adjust your target number of scenes and all see scene parameters in each file
+./render.sh 
 ```
+Adjust your target number of scenes and all see scene parameters in each file.
 
 This script is performing a two-step pipeline for generating and rendering 3D scenes using Blender and Python.
 
@@ -78,13 +80,15 @@ This script is performing a two-step pipeline for generating and rendering 3D sc
   - Saves RGB and depth images in **EXR format**, then converts them to PNG.
 
 - **Workflow**:
-  1. **Loads the `.glb` scene into Blender**.
-  2. **Resets the scene** to remove old objects.
-  3. **Adds lighting & cameras** for rendering.
-  4. **Renders multiple viewpoints**, storing RGB-D outputs.
-  5. **Saves camera parameters** in `opencv_cameras.json` for future use.
-  6. **Cleans up temporary files** after rendering.
-```
+  - **Loads the `.glb` scene into Blender**.
+  - **Resets the scene** to remove old objects.
+  - **Adds lighting & cameras** for rendering.
+  - **Renders multiple viewpoints**, storing RGB-D outputs.
+  - **Saves camera parameters** in `opencv_cameras.json` for future use.
+  - **Cleans up temporary files** after rendering.
+
+## Abstract
+We propose scaling up 3D scene reconstruction by training with <b>synthesized data</b>. At the core of our work is <b>MegaSynth</b>, a 3D dataset comprising <b>700K scenes</b> (which takes only <b>3 days</b> to generate) - 70 times larger than the prior real dataset DL3DV - dramatically scaling the training data. To enable scalable data generation, our key idea is <b>eliminating semantic information</b>, removing the need to model complex semantic priors such as object affordances and scene composition. Instead, we model scenes with basic spatial structures and geometry primitives, offering scalability. Besides, we control data complexity to facilitate training while loosely aligning it with real-world data distribution to benefit real-world generalization. We explore training LRMs with both MegaSynth and available real data, enabling <b>wide-coverage scene reconstruction within 0.3 second</b>.
 
 ## TODO
 - [ ] Modify the texture sampling logic. As we synthesize scenes with Adobe internal material maps, we cannot release with the internal materials. Now, we sample a single material for the whole scene as a quick demo, following Zeroverse. We will modify the sampling logic to enable different materials for each shape primmitive. See the sampling logic at L207 and L1252 of ```create_shapes.py```.
