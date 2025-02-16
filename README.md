@@ -62,8 +62,6 @@ This script is performing a two-step pipeline for generating and rendering 3D sc
 
 ---
 
-Scene 1:
-
 <p align="center">
   <img src="assets/scene_1.png" alt="Hand Mesh Model" width="400">
   <img src="assets/scene_1_ext.png" alt="Hand Mesh Model" width="400">
@@ -84,8 +82,6 @@ Scene 1:
   - Converts the generated `.obj` files to `.glb` using `convert_file()`.
 
 ---
-
-Scene 2:
 
 <p align="center">
   <img src="assets/scene_2.png" alt="Hand Mesh Model" width="400">
@@ -109,8 +105,6 @@ Scene 2:
   - **Renders multiple viewpoints**, storing RGB-D outputs.
   - **Saves camera parameters** in `opencv_cameras.json` for future use.
   - **Cleans up temporary files** after rendering.
-
-Scene 3:
 
 <p align="center">
   <img src="assets/scene_3.png" alt="Hand Mesh Model" width="400">
