@@ -164,4 +164,5 @@ cython_debug/
 
 convert_obj_to_glb_internal.py
 prepare_blender.py
-generated_scenes
+generated_scenes/
+mega_synth_venv/

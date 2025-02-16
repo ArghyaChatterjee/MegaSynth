@@ -29,16 +29,24 @@ python3.10 -m venv mega_synth_venv
 source mega_synth_venv/bin/activate
 pip3 install --upgrade pip setuptools
 pip3 install -r requirements.txt
-# install blender, then
-export PATH=path/to/blender/:$PATH  
-# needs blender binary in addition to bpy to run
+```
+This script needs blender binary in addition to `bpy` to execute the rendering script. Install blender `3.6.0` by first downloading the `blender-3.6.0-linux-x64.tar` from the blender website, extract the files and export the folder to the path. For me, it looks like this:
+```   
+export PATH=/home/arghya/blender/blender-3.6.0-linux-x64:$PATH
 ```
 
 ## Generate Scenes
 ```
-./render.sh 
+. ./render.sh 
 ```
-Adjust your target number of scenes and all see scene parameters in each file.
+Adjust your target number of scenes and also adjust scene parameters in each file.
+
+Rendered Scene 1:
+
+<p align="center">
+  <img src="assets/mega_synth_rgb_rendered_scene.png" alt="Hand Mesh Model" width="400">
+  <img src="assets/mega_synth_depth_rendered_scene.png" alt="Hand Mesh Model" width="400">
+</p>
 
 This script is performing a two-step pipeline for generating and rendering 3D scenes using Blender and Python.
 
@@ -53,6 +61,13 @@ This script is performing a two-step pipeline for generating and rendering 3D sc
    - The rendered outputs are stored in `./generated_scenes/rendering/`.
 
 ---
+
+Scene 1:
+
+<p align="center">
+  <img src="assets/scene_1.png" alt="Hand Mesh Model" width="400">
+  <img src="assets/scene_1_ext.png" alt="Hand Mesh Model" width="400">
+</p>
 
 ### **Breakdown of Each Script**
 #### **1️⃣ `create_scenes.py`**
@@ -70,6 +85,14 @@ This script is performing a two-step pipeline for generating and rendering 3D sc
 
 ---
 
+Scene 2:
+
+<p align="center">
+  <img src="assets/scene_2.png" alt="Hand Mesh Model" width="400">
+  <img src="assets/scene_2_ext.png" alt="Hand Mesh Model" width="400">
+</p>
+
+
 #### **2️⃣ `render_scenes_rgbd.py`**
 - **Purpose**: Renders the generated `.glb` scenes using Blender, capturing RGB-D (color + depth) images.
 - **Key Components**:
@@ -86,6 +109,13 @@ This script is performing a two-step pipeline for generating and rendering 3D sc
   - **Renders multiple viewpoints**, storing RGB-D outputs.
   - **Saves camera parameters** in `opencv_cameras.json` for future use.
   - **Cleans up temporary files** after rendering.
+
+Scene 3:
+
+<p align="center">
+  <img src="assets/scene_3.png" alt="Hand Mesh Model" width="400">
+  <img src="assets/scene_3_ext.png" alt="Hand Mesh Model" width="400">
+</p>
 
 ## Abstract
 We propose scaling up 3D scene reconstruction by training with <b>synthesized data</b>. At the core of our work is <b>MegaSynth</b>, a 3D dataset comprising <b>700K scenes</b> (which takes only <b>3 days</b> to generate) - 70 times larger than the prior real dataset DL3DV - dramatically scaling the training data. To enable scalable data generation, our key idea is <b>eliminating semantic information</b>, removing the need to model complex semantic priors such as object affordances and scene composition. Instead, we model scenes with basic spatial structures and geometry primitives, offering scalability. Besides, we control data complexity to facilitate training while loosely aligning it with real-world data distribution to benefit real-world generalization. We explore training LRMs with both MegaSynth and available real data, enabling <b>wide-coverage scene reconstruction within 0.3 second</b>.
