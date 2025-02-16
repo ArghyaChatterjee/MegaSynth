@@ -5,7 +5,7 @@
 </div>
 
 <p align="center">
-  <img src="assets/mega_synth_scene.png" alt="Hand Mesh Model" width="500">
+  <img src="assets/mega_synth_scene.png" alt="Hand Mesh Model" width="800">
 </p>
 
 ## Requirements
